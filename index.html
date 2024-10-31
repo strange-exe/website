@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="font-sans bg-gray-100 text-gray-800 p-5">
+    <div class="container mx-auto max-w-4xl p-5">
+        <h1 class="text-center text-blue-600 mb-5 text-3xl">My Projects</h1>
+
+        <!-- Search input -->
+        <input type="text" id="search" placeholder="Search for a project..."
+            class="block w-full p-3 mb-5 border border-gray-300 rounded-md text-base">
+
+        <!-- Project cards -->
+        <div
+            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="text-blue-700 text-xl">Digital Clock</h3>
+            <p class="text-gray-600">A web app that allows users to experience a custom digital clock.</p>
+            <a href="https://abhineshh.netlify.app"
+                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
+                target="_blank">View Project</a>
+        </div>
+
+        <div
+            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="text-blue-700 text-xl">Password Generator</h3>
+            <p class="text-gray-600">A password generator application which can help users generate passwords of any
+                length with optional parameters.</p>
+            <a href="https://gen-passwd.netlify.app/"
+                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
+                target="_blank">View Project</a>
+        </div>
+
+        <div
+            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+            <h3 class="text-blue-700 text-xl">Quotes Generator</h3>
+            <p class="text-gray-600">A quotes generator application that uses an open-source API to generate quotes from
+                famous people.</p>
+            <a href="https://gen-quotes.netlify.app/"
+                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
+                target="_blank">View Project</a>
+        </div>
+
+        <!-- Add more project cards here -->
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-10 p-2 text-gray-600 text-sm">
+        &copy; Designed by Abhinesh Kumar Gangwar
+    </footer>
+
+    <!-- JavaScript for Search Feature -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            searchInput.addEventListener('input', () => {
+                const searchValue = searchInput.value.toLowerCase();
+                projectCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    card.style.display = title.includes(searchValue) ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
