@@ -7,69 +7,284 @@
     <link href="icon.ico" rel="icon">
     <title>Projects Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #1e3a8a;
+        }
+
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 1rem;
+            max-width: 300px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .loader {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .loader div {
+            width: 30px;
+            height: 30px;
+            margin: 6px;
+            border-radius: 50%;
+            background: #1e3a8a;
+            animation: loader 0.8s infinite alternate;
+        }
+
+        @keyframes loader {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.5);
+            }
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .share-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .view-project-btn {
+            background: #1e3a8a;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .view-project-btn:hover {
+            background: #2563eb;
+        }
+
+        @media (min-width: 640px) {
+            .project-card {
+                flex: 1 1 calc(33.333% - 1rem);
+            }
+        }
+
+        @media (max-width: 639px) {
+            .project-card {
+                flex: 1 1 calc(100% - 1rem);
+            }
+        }
+    </style>
 </head>
 
-<body class="font-sans bg-gray-100 text-gray-800 p-5">
-    <div class="container mx-auto max-w-4xl p-5">
-        <h1 class="text-center text-blue-600 mb-5 text-3xl">Archive</h1>
+<body>
+    <header class="text-center p-5">
+        <h1 class="text-4xl font-bold">Projects Archive</h1>
+        <p class="text-gray-700 mt-2">Explore my latest projects below</p>
+    </header>
 
-        <!-- Search input -->
+    <main class="container mx-auto max-w-6xl p-5">
         <input type="text" id="search" placeholder="Search for a project..."
-            class="block w-full p-3 mb-5 border border-gray-300 rounded-md text-base">
+            class="block w-full p-3 mb-5 border border-gray-300 rounded-md text-base shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        <!-- Project cards -->
-        <div
-            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="text-blue-700 text-xl">Digital Clock</h3>
-            <p class="text-gray-600">A web app that allows users to experience a custom digital clock.</p>
-            <a href="https://digital-clocckk.netlify.app/"
-                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
-                target="_blank">View Project</a>
+        <div class="loader" id="loader">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
 
-        <div
-            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="text-blue-700 text-xl">Password Generator</h3>
-            <p class="text-gray-600">A password generator application which can help users generate passwords of any
-                length with optional parameters.</p>
-            <a href="https://gen-passwd.netlify.app/"
-                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
-                target="_blank">View Project</a>
+        <div class="flex flex-wrap justify-center" id="project-container">
+            <!-- Project cards will be generated here -->
         </div>
+    </main>
 
-        <div
-            class="bg-white p-5 mb-4 rounded-lg shadow-md transition-transform transform hover:-translate-y-1 hover:shadow-lg">
-            <h3 class="text-blue-700 text-xl">Quotes Generator</h3>
-            <p class="text-gray-600">A quotes generator application that uses an open-source API to generate quotes from
-                famous people.</p>
-            <a href="https://gen-quotes.netlify.app/"
-                class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500"
-                target="_blank">View Project</a>
-        </div>
-
-        <!-- Add more project cards here -->
-
-    </div>
-
-    <!-- Footer -->
     <footer class="text-center mt-10 p-2 text-gray-600 text-sm">
-        &copy; Designed by Abhinesh Kumar Gangwar
+        &copy; 2024 Designed by Abhinesh Kumar Gangwar
     </footer>
 
-    <!-- JavaScript for Search Feature -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('search');
-            const projectCards = document.querySelectorAll('.project-card');
+        const projects = [
+            {
+                title: "Digital Clock",
+                description: "A web app that allows users to experience a custom digital clock.",
+                link: "https://digital-clocckk.netlify.app/"
+            },
+            {
+                title: "Password Generator",
+                description: "A password generator application that helps users create secure passwords.",
+                link: "https://gen-passwd.netlify.app/"
+            },
+            {
+                title: "Quotes Generator",
+                description: "A quotes generator application using an open-source API for inspiration.",
+                link: "https://gen-quotes.netlify.app/"
+            }
+            // Add more projects here
+        ];
 
-            searchInput.addEventListener('input', () => {
-                const searchValue = searchInput.value.toLowerCase();
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectContainer = document.getElementById('project-container');
+            const loader = document.getElementById('loader');
+
+            // Simulate loading effect
+            loader.style.display = 'flex';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                renderProjects();
+            }, 1000);
+
+            document.getElementById('search').addEventListener('input', (e) => {
+                const searchValue = e.target.value.toLowerCase();
+                const projectCards = document.querySelectorAll('.project-card');
                 projectCards.forEach(card => {
-                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const title = card.dataset.title.toLowerCase();
                     card.style.display = title.includes(searchValue) ? 'block' : 'none';
                 });
             });
         });
+
+        function renderProjects() {
+            const projectContainer = document.getElementById('project-container');
+            projectContainer.innerHTML = ''; // Clear existing content
+
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.classList.add('project-card', 'mb-4', 'mx-2');
+                card.dataset.title = project.title;
+                card.innerHTML = `
+                    <h3 class="text-xl font-semibold">${project.title}</h3>
+                    <p>${project.description}</p>
+                    <a href="${project.link}" target="_blank" rel="noopener noreferrer"
+                        class="view-project-btn">View Project</a>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareProject('whatsapp', '${project.title}', '${project.link}')">
+                            <img src="https://img.icons8.com/ios-filled/20/000000/whatsapp.png" class="share-icon" alt="WhatsApp">
+                        </button>
+                        <button class="share-btn" onclick="shareProject('discord', '${project.title}', '${project.link}')">
+                            <img src="https://img.icons8.com/ios-filled/20/000000/discord.png" class="share-icon" alt="Discord">
+                        </button>
+                        <button class="share-btn" onclick="shareProject('gmail', '${project.title}', '${project.link}')">
+                            <img src="https://img.icons8.com/ios-filled/20/000000/gmail.png" class="share-icon" alt="Gmail">
+                        </button>
+                        <button class="share-btn" onclick="shareProject('instagram', '${project.title}', '${project.link}')">
+                            <img src="https://img.icons8.com/ios-filled/20/000000/instagram-new.png" class="share-icon" alt="Instagram">
+                        </button>
+                    </div>
+                `;
+
+                projectContainer.appendChild(card);
+            });
+        }
+
+        function shareProject(platform, title, link) {
+            let shareUrl = '';
+            const url = encodeURIComponent(link);
+            const text = encodeURIComponent(`Check out this project: ${title}`);
+
+            switch (platform) {
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${text} ${url}`;
+                    break;
+                case 'discord':
+                    shareUrl = `https://discord.com/channels/@me?text=${text} ${url}`;
+                    break;
+                case 'gmail':
+                    shareUrl = `mailto:?subject=${text}&body=${url}`;
+                    break;
+                case 'instagram':
+                    alert('Sharing to Instagram requires manual copy-paste as there is no direct URL sharing.');
+                    return;
+                default:
+                    return;
+            }
+            window.open(shareUrl, '_blank');
+        }
     </script>
 </body>
 
