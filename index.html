@@ -13,7 +13,6 @@
             background-attachment: fixed;
         }
 
-        /* Project Card Styling */
         .project-card {
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
@@ -31,7 +30,6 @@
             overflow: hidden;
         }
 
-        /* Gradient Border */
         .project-card:hover {
             border-color: linear-gradient(45deg, #007cf0, #00dfd8);
             border-width: 3px;
@@ -78,15 +76,33 @@
             width: 24px;
             height: 24px;
         }
-            /* Responsive Grid for Project Cards */
-            @media (min-width: 768px) {
-                #project-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 1rem;
-                    justify-content: center;
-                }
+
+        .socials-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .socials-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+        }
+
+        @media (min-width: 768px) {
+            #project-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
             }
+        }
     </style>
 </head>
 
@@ -95,6 +111,10 @@
     <header class="text-center py-10">
         <h1 class="text-5xl font-bold text-blue-600">Projects Archive</h1>
         <p class="mt-3 text-lg text-gray-700">Explore my latest projects below</p>
+        <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" rel="noopener noreferrer"
+            class="socials-btn mt-4">
+            My Instagram
+        </a>
     </header>
 
     <!-- Search Bar -->
@@ -110,7 +130,7 @@
 
     <!-- Footer -->
     <footer class="text-center mt-10 py-5 text-gray-600 text-sm">
-        &copy; 2024 Designed by Abhinesh Kumar Gangwar
+        &copy; 2024 Designed & Created by Abhinesh Kumar Gangwar
     </footer>
 
     <script>
@@ -156,7 +176,9 @@
                 card.innerHTML = `
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
-                    <a href="${project.link}" target="_blank" class="view-project-btn bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition">
+                    <a href="${project.link}" target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="view-project-btn bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition">
                         View Project
                     </a>
                     <div class="share-buttons">
