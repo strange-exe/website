@@ -7,133 +7,246 @@
     <link href="icon.ico" rel="icon">
     <title>Projects Archive</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Global Styles */
         body {
-            background: linear-gradient(to right, #e0eafc, #cfdef3);
-            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        .project-card {
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.25);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            max-width: 340px;
-            width: 100%;
-            margin: 1rem;
-            transition: border 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        /* Keyframes for the fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
-        .project-card:hover {
-            border-color: linear-gradient(45deg, #007cf0, #00dfd8);
-            border-width: 3px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1e3a8a;
-            margin-bottom: 0.5rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
-        .project-description {
-            color: #4a5568;
-            margin-bottom: 1.5rem;
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #4e73df, #6c5ce7);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 2px solid #e5e5e5;
+            animation: fadeIn 2s ease-out;
         }
 
-        .share-buttons {
-            display: flex;
-            justify-content: center;
+        header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        header p {
             margin-top: 10px;
+            font-size: 1.25rem;
         }
 
-        .share-btn {
+        header .social-btns-container {
+            margin-top: 20px;
+        }
+
+        header .social-btns-container a {
+            margin: 0 10px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: none;
-            border-radius: 50%;
-            padding: 8px;
-            margin: 0 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .share-btn:hover {
+        header .social-btns-container a:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .share-icon {
+        header .social-btns-container img {
             width: 24px;
             height: 24px;
         }
 
-        .socials-btn {
+        /* Search Bar Styles */
+        .search-container {
+            max-width: 500px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px 40px 15px 15px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.2);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #2d14ec;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: #4e73df;
+            cursor: pointer;
+        }
+
+        /* Project Card Styles */
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            border-color: #4e73df;
+        }
+
+        .project-title {
+            font-size: 1.75rem;
+            color: #4e73df;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: #161617;
+            margin-bottom: 20px;
+        }
+
+        .view-project-btn {
             display: inline-block;
             padding: 10px 20px;
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            background-color: #4e73df;
             color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-project-btn:hover {
+            background-color: #6c5ce7;
+        }
+
+        /* Linked Text Color (Red) for Footer */
+        footer a {
+            color: rgb(211, 40, 40);
             font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
-        .socials-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-            background: linear-gradient(90deg, #2575fc, #6a11cb);
+        footer a:hover {
+            color: #ff3b30;
         }
 
+        /* Footer Styles */
+        footer {
+            background-color: #4e73df;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.875rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Responsive Styles */
         @media (min-width: 768px) {
-            #project-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
+            .projects-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
             }
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col items-center">
-    <!-- Header -->
-    <header class="text-center py-10">
-        <h1 class="text-5xl font-bold text-blue-600">Projects Archive</h1>
-        <p class="mt-3 text-lg text-gray-700">Explore my latest projects below</p>
-        <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" rel="noopener noreferrer"
-            class="socials-btn mt-4">
-            My Instagram
-        </a>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Projects Archive</h1>
+            <p>Explore my latest web development projects</p>
+
+            <!-- Social Media Links -->
+            <div class="social-btns-container">
+                <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" title="Instagram" rel="noopener">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                        alt="Instagram Icon">
+                </a>
+            </div>
+        </div>
     </header>
 
     <!-- Search Bar -->
-    <div class="w-full max-w-md px-6">
-        <input type="text" id="search" placeholder="Search for a project..."
-            class="w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <input type="text" id="search" placeholder="Search for a project..." title="Search through projects">
+            <i class="fas fa-search search-icon"></i>
+        </div>
     </div>
 
-    <!-- Project Cards Container -->
-    <main id="project-container" class="w-full max-w-6xl p-6 mx-auto flex flex-wrap gap-6 justify-center">
-        <!-- Dynamic Project Cards will be generated here -->
-    </main>
+    <!-- Project Cards Section -->
+    <section class="projects-container container">
+        <!-- Dynamic Project Cards will be inserted here -->
+    </section>
 
-    <!-- Footer -->
-    <footer class="text-center mt-10 py-5 text-gray-600 text-sm">
-        &copy; 2024 Designed & Created by Abhinesh Kumar Gangwar
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Designed & Created by <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank"
+                rel="noopener">Abhinesh Kumar Gangwar</a></p>
     </footer>
 
     <script>
+        // Projects Array
         const projects = [
             {
                 title: "Digital Clock",
@@ -165,72 +278,25 @@
             });
         });
 
+        // Render Project Cards
         function renderProjects() {
-            const container = document.getElementById('project-container');
-            container.innerHTML = '';
+            const container = document.querySelector('.projects-container');
+            container.innerHTML = ''; // Clear any existing content
 
             projects.forEach(project => {
                 const card = document.createElement('div');
-                card.className = "project-card";
+                card.className = 'project-card';
                 card.dataset.title = project.title;
                 card.innerHTML = `
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
-                    <a href="${project.link}" target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="view-project-btn bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition">
-                        View Project
-                    </a>
-                    <div class="share-buttons">
-                        <button class="share-btn" onclick="shareProject('whatsapp', '${project.title}', '${project.link}')">
-                            <img src="https://img.icons8.com/color/20/000000/whatsapp--v1.png" class="share-icon" alt="WhatsApp">
-                        </button>
-                        <button class="share-btn" onclick="shareProject('discord', '${project.title}', '${project.link}')">
-                            <img src="https://img.icons8.com/color/20/000000/discord--v2.png" class="share-icon" alt="Discord">
-                        </button>
-                        <button class="share-btn" onclick="shareProject('gmail', '${project.title}', '${project.link}')">
-                            <img src="https://img.icons8.com/color/20/000000/gmail.png" class="share-icon" alt="Gmail">
-                        </button>
-                        <button class="share-btn" onclick="shareProject('instagram', '${project.title}', '${project.link}')">
-                            <img src="https://img.icons8.com/color/20/000000/instagram-new.png" class="share-icon" alt="Instagram">
-                        </button>
-                    </div>
+                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="view-project-btn">View Project</a>
                 `;
                 container.appendChild(card);
             });
         }
-
-        function shareProject(platform, title, link) {
-            let shareUrl = '';
-            const url = encodeURIComponent(link);
-            const text = encodeURIComponent(`Check out this project: ${title}`);
-
-            switch (platform) {
-                case 'whatsapp':
-                    shareUrl = `https://api.whatsapp.com/send?text=${text} ${url}`;
-                    break;
-                case 'discord':
-                    shareUrl = `https://discord.com/channels/@me?text=${text} ${url}`;
-                    break;
-                case 'gmail':
-                    shareUrl = `mailto:?subject=${text}&body=${url}`;
-                    break;
-                case 'instagram':
-                    navigator.clipboard.writeText(link).then(() => {
-                        alert('Project link copied! Opening Instagram...');
-                        setTimeout(() => {
-                            window.open('https://www.instagram.com', '_blank');
-                        }, 1500);
-                    }).catch(err => {
-                        alert('Failed to copy link. Please copy manually.');
-                    });
-                    return;
-                default:
-                    return;
-            }
-            window.open(shareUrl, '_blank');
-        }
     </script>
+
 </body>
 
 </html>
