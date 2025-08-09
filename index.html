@@ -91,18 +91,21 @@
         const GITHUB_USERNAME = "strange-exe"; // <-- Change this to your GitHub username
 
         document.addEventListener("DOMContentLoaded", () => {
-            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`)
-                .then(res => res.json())
-                .then(data => {
-                    const projects = data.map(repo => ({
-                        title: repo.name
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, char => char.toUpperCase());
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`)
+        .then(res => res.json())
+        .then(data => {
+            const projects = data.map(repo => ({
+                title: repo.name
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, char => char.toUpperCase()),
+                description: repo.description || "No description provided.",
+                link: repo.html_url
+            }));
+            renderProjects(projects);
+        })
+        .catch(err => console.error("Error fetching GitHub repos:", err));
+});
 
-                        description: repo.description || "No description provided.",
-                        link: repo.html_url
-                    }));
-                    renderProjects(projects);
 
                     // Search filter
                     document.getElementById("search").addEventListener("input", (e) => {
@@ -135,5 +138,6 @@
     </script>
 </body>
 </html>
+
 
 
