@@ -95,7 +95,10 @@
                 .then(res => res.json())
                 .then(data => {
                     const projects = data.map(repo => ({
-                        title: repo.name.replace(/-/g, " "),
+                        title: repo.name
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, char => char.toUpperCase());
+
                         description: repo.description || "No description provided.",
                         link: repo.html_url
                     }));
@@ -132,4 +135,5 @@
     </script>
 </body>
 </html>
+
 
