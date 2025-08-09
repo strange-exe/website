@@ -16,7 +16,10 @@
             background-color: #f5f7fa;
             animation: fadeIn 1.5s ease-in-out;
         }
-        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fadeIn { 
+            0% { opacity: 0; } 
+            100% { opacity: 1; } 
+        }
 
         .project-card {
             background-color: white;
@@ -61,7 +64,7 @@
     <!-- Header -->
     <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-10 text-center">
         <h1 class="text-4xl font-bold">Projects Archive</h1>
-        <p class="mt-2 text-lg"></p>
+        <p class="mt-2 text-lg">A collection of my GitHub repositories</p>
         <div class="mt-4">
             <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" class="inline-block bg-white p-2 rounded-full shadow hover:scale-110 transition">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="w-6 h-6">
@@ -91,32 +94,29 @@
         const GITHUB_USERNAME = "strange-exe"; // <-- Change this to your GitHub username
 
         document.addEventListener("DOMContentLoaded", () => {
-    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`)
-        .then(res => res.json())
-        .then(data => {
-            const projects = data.map(repo => ({
-                title: repo.name
-                    .replace(/-/g, " ")
-                    .replace(/\b\w/g, char => char.toUpperCase()),
-                description: repo.description || "No description provided.",
-                link: repo.html_url
-            }));
-            renderProjects(projects);
-        })
-        .catch(err => console.error("Error fetching GitHub repos:", err));
-});
-
-
-                    // Search filter
-                    document.getElementById("search").addEventListener("input", (e) => {
-                        const query = e.target.value.toLowerCase();
-                        document.querySelectorAll(".project-card").forEach(card => {
-                            const title = card.dataset.title.toLowerCase();
-                            card.style.display = title.includes(query) ? "block" : "none";
-                        });
-                    });
+            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`)
+                .then(res => res.json())
+                .then(data => {
+                    const projects = data.map(repo => ({
+                        title: repo.name
+                            .replace(/-/g, " ")
+                            .replace(/\b\w/g, char => char.toUpperCase()),
+                        description: repo.description || "No description provided.",
+                        link: repo.html_url,
+                        updated: new Date(repo.updated_at).toLocaleDateString()
+                    }));
+                    renderProjects(projects);
                 })
                 .catch(err => console.error("Error fetching GitHub repos:", err));
+
+            // Search filter
+            document.getElementById("search").addEventListener("input", (e) => {
+                const query = e.target.value.toLowerCase();
+                document.querySelectorAll(".project-card").forEach(card => {
+                    const title = card.dataset.title.toLowerCase();
+                    card.style.display = title.includes(query) ? "block" : "none";
+                });
+            });
         });
 
         function renderProjects(projects) {
@@ -130,6 +130,7 @@
                 card.innerHTML = `
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
+                    <p class="text-sm text-gray-500 mb-3">Last updated: ${project.updated}</p>
                     <a href="${project.link}" target="_blank" class="view-project-btn">View Project</a>
                 `;
                 container.appendChild(card);
@@ -138,6 +139,3 @@
     </script>
 </body>
 </html>
-
-
-
