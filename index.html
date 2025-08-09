@@ -268,7 +268,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
 
-            // Search functionality
             document.getElementById('search').addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase();
                 document.querySelectorAll('.project-card').forEach(card => {
@@ -278,10 +277,9 @@
             });
         });
 
-        // Render Project Cards
         function renderProjects() {
             const container = document.querySelector('.projects-container');
-            container.innerHTML = ''; // Clear any existing content
+            container.innerHTML = '';
 
             projects.forEach(project => {
                 const card = document.createElement('div');
@@ -300,3 +298,4 @@
 </body>
 
 </html>
+
