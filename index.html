@@ -7,131 +7,17 @@
     <link href="icon.ico" rel="icon">
     <title>Projects Archive</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Include Poppins font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for search icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f7fa;
-            color: #333;
-            margin: 0;
-            padding: 0;
             animation: fadeIn 1.5s ease-in-out;
         }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-        /* Keyframes for the fade-in animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #4e73df, #6c5ce7);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 2px solid #e5e5e5;
-            animation: fadeIn 2s ease-out;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        header p {
-            margin-top: 10px;
-            font-size: 1.25rem;
-        }
-
-        header .social-btns-container {
-            margin-top: 20px;
-        }
-
-        header .social-btns-container a {
-            margin: 0 10px;
-            padding: 10px;
-            border-radius: 50%;
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        header .social-btns-container a:hover {
-            transform: scale(1.1);
-        }
-
-        header .social-btns-container img {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Search Bar Styles */
-        .search-container {
-            max-width: 500px;
-            margin: 40px auto;
-            position: relative;
-        }
-
-        .search-input-wrapper {
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 15px 40px 15px 15px;
-            font-size: 1.1rem;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            transition: border 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .search-container input:focus {
-            border-color: #4e73df;
-            box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.2);
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            color: #2d14ec;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .search-icon:hover {
-            color: #4e73df;
-            cursor: pointer;
-        }
-
-        /* Project Card Styles */
         .project-card {
             background-color: white;
             border-radius: 12px;
@@ -140,162 +26,109 @@
             margin-bottom: 20px;
             transition: all 0.3s ease;
             text-align: center;
-            border: 2px solid transparent;
         }
-
         .project-card:hover {
+            transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transform: translateY(-10px);
-            border-color: #4e73df;
+            border: 2px solid #4e73df;
         }
-
         .project-title {
-            font-size: 1.75rem;
-            color: #4e73df;
+            font-size: 1.5rem;
             font-weight: bold;
+            color: #4e73df;
             margin-bottom: 10px;
         }
-
         .project-description {
             font-size: 1rem;
-            color: #161617;
-            margin-bottom: 20px;
+            color: #555;
+            margin-bottom: 15px;
         }
-
         .view-project-btn {
             display: inline-block;
             padding: 10px 20px;
             background-color: #4e73df;
             color: white;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
-
         .view-project-btn:hover {
             background-color: #6c5ce7;
-        }
-
-        /* Linked Text Color (Red) for Footer */
-        footer a {
-            color: rgb(211, 40, 40);
-            font-weight: bold;
-            text-decoration: underline;
-            transition: color 0.3s ease, text-decoration 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #ff3b30;
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: #4e73df;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.875rem;
-            animation: fadeIn 2s ease-out;
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 768px) {
-            .projects-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 30px;
-            }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1>Projects Archive</h1>
-            <p>Explore my latest web development projects</p>
-
-            <!-- Social Media Links -->
-            <div class="social-btns-container">
-                <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" title="Instagram" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-                        alt="Instagram Icon">
-                </a>
-            </div>
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-10 text-center">
+        <h1 class="text-4xl font-bold">Projects Archive</h1>
+        <p class="mt-2 text-lg">Automatically updated from my GitHub repositories</p>
+        <div class="mt-4">
+            <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" class="inline-block bg-white p-2 rounded-full shadow hover:scale-110 transition">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="w-6 h-6">
+            </a>
         </div>
     </header>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <div class="search-input-wrapper">
-            <input type="text" id="search" placeholder="Search for a project..." title="Search through projects">
-            <i class="fas fa-search search-icon"></i>
-        </div>
+    <!-- Search -->
+    <div class="max-w-lg mx-auto my-6 relative">
+        <input type="text" id="search" placeholder="Search for a project..." 
+            class="w-full p-3 pr-10 rounded-lg border border-gray-300 shadow focus:ring-4 focus:ring-blue-300 focus:outline-none">
+        <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-700"></i>
     </div>
 
-    <!-- Project Cards Section -->
-    <section class="projects-container container">
-        <!-- Dynamic Project Cards will be inserted here -->
-    </section>
+    <!-- Projects -->
+    <section class="projects-container container mx-auto px-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></section>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Designed & Created by <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank"
-                rel="noopener">Abhinesh Kumar Gangwar</a></p>
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white text-center py-4 mt-10">
+        &copy; 2024 Designed & Created by 
+        <a href="https://www.instagram.com/_abhinesh.exe/" target="_blank" class="text-red-400 font-bold underline hover:text-red-500">
+            Abhinesh Kumar Gangwar
+        </a>
     </footer>
 
     <script>
-        // Projects Array
-        const projects = [
-            {
-                title: "Digital Clock",
-                description: "A web app that allows users to experience a custom digital clock.",
-                link: "https://digital-clocckk.netlify.app/"
-            },
-            {
-                title: "Password Generator",
-                description: "A password generator application that helps users create secure passwords.",
-                link: "https://gen-passwd.netlify.app/"
-            },
-            {
-                title: "Quotes Generator",
-                description: "A quotes generator application using an open-source API for inspiration.",
-                link: "https://gen-quotes.netlify.app/"
-            }
-        ];
+        const GITHUB_USERNAME = "abhinesh-gangwar"; // <-- Change this to your GitHub username
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated`)
+                .then(res => res.json())
+                .then(data => {
+                    const projects = data.map(repo => ({
+                        title: repo.name.replace(/-/g, " "),
+                        description: repo.description || "No description provided.",
+                        link: repo.html_url
+                    }));
+                    renderProjects(projects);
 
-            document.getElementById('search').addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                document.querySelectorAll('.project-card').forEach(card => {
-                    const title = card.dataset.title.toLowerCase();
-                    card.style.display = title.includes(query) ? 'block' : 'none';
-                });
-            });
+                    // Search filter
+                    document.getElementById("search").addEventListener("input", (e) => {
+                        const query = e.target.value.toLowerCase();
+                        document.querySelectorAll(".project-card").forEach(card => {
+                            const title = card.dataset.title.toLowerCase();
+                            card.style.display = title.includes(query) ? "block" : "none";
+                        });
+                    });
+                })
+                .catch(err => console.error("Error fetching GitHub repos:", err));
         });
 
-        function renderProjects() {
-            const container = document.querySelector('.projects-container');
-            container.innerHTML = '';
+        function renderProjects(projects) {
+            const container = document.querySelector(".projects-container");
+            container.innerHTML = "";
 
             projects.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
+                const card = document.createElement("div");
+                card.className = "project-card";
                 card.dataset.title = project.title;
                 card.innerHTML = `
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
-                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="view-project-btn">View Project</a>
+                    <a href="${project.link}" target="_blank" class="view-project-btn">View Project</a>
                 `;
                 container.appendChild(card);
             });
         }
     </script>
-
 </body>
-
 </html>
-
